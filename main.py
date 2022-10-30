@@ -1,11 +1,9 @@
 #   https://discord.com/api/oauth2/authorize?client_id=1035734043511242822&permissions=8&scope=bot%20applications.commands
 #   discord.py | python-dotenv | 
-from email.mime import message
-import discord as dc
 import os
-from dotenv import load_dotenv
+import discord as dc
 from discord.ext import commands
-from discord import app_commands
+from dotenv import load_dotenv
 
 load_dotenv()
 intents = dc.Intents.all()
@@ -13,7 +11,7 @@ bot = commands.Bot(command_prefix='!', intents = intents)
 
 @bot.event
 async def on_ready():
-    print('O bot está ON!'.format(bot))
+    print('O bot estÃ¡ ON!'.format(bot)) 
     try:
         synced = await bot.tree.sync()
         print(f'sync {len(synced)} comandos')
@@ -21,16 +19,12 @@ async def on_ready():
         print(ex)
 
 @bot.event
-async def on_mesage(message):
+async def on_message(message):
     if message.author == bot.user:
         return
     
     if message.content.startswith('oi'):
         await message.channel.send('oi!')
-
-    if message.content.startswith('stop'):
-        await message.channel.send('bot desligando...')
-        await bot.close()
 
 @bot.tree.command(name='teste')
 async def cmd(interaction: dc.Interaction):  
